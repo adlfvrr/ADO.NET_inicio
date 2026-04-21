@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DAO_proy/DAO_proy.csproj" />
+  <Project Path="ModalProductos/ModalProductos.csproj" />
+</Solution>

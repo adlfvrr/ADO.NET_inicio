@@ -1,0 +1,13 @@
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\DAO_proy.csproj.AssemblyReference.cache
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\DAO_proy.GeneratedMSBuildEditorConfig.editorconfig
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\DAO_proy.AssemblyInfoInputs.cache
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\DAO_proy.AssemblyInfo.cs
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\DAO_proy.csproj.CoreCompileInputs.cache
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\DAO_proy.sourcelink.json
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\bin\Debug\net10.0\DAO_proy.deps.json
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\bin\Debug\net10.0\DAO_proy.dll
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\bin\Debug\net10.0\DAO_proy.pdb
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\DAO_proy.dll
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\refint\DAO_proy.dll
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\DAO_proy.pdb
+P:\Accesos\Docs\repos\repo_GITHUB_7\intro_DAO\DAO_proy\obj\Debug\net10.0\ref\DAO_proy.dll
