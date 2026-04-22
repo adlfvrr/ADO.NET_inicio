@@ -1,4 +1,5 @@
 using DAO_proy.DTOs;
+using DAO_proy.entity;
 using DAO_proy.service;
 using System.Drawing.Drawing2D;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -128,10 +129,7 @@ namespace ModalProductos
             }
             finally
             {
-                tbModeloS.Text = string.Empty;
-                tbPrecioS.Text = string.Empty;
-                tbSerie.Text = string.Empty;
-                tbStockS.Text = string.Empty;
+                Limpiar();
             }
         }
 
@@ -178,7 +176,7 @@ namespace ModalProductos
                 dto.stock = Convert.ToInt32(tbStockI.Text);
                 MessageBox.Show($"{this.service.AgregarIphone(dto)}\n¡ Celular agregado con éxito !");
 
-                btnListarI.PerformClick();
+                ActualizarLista();
             }
             catch (Exception ex)
             {
@@ -186,10 +184,7 @@ namespace ModalProductos
             }
             finally
             {
-                tbModeloI.Text = string.Empty;
-                tbPrecioI.Text = string.Empty;
-                tbBateria.Text = string.Empty;
-                tbStockI.Text = string.Empty;
+                Limpiar();
             }
         }
 
@@ -233,6 +228,7 @@ namespace ModalProductos
                     IphoneDTO dto = lsbI.SelectedItem as IphoneDTO;
                     if (dto != null)
                     {
+                        dto = AsignarDatosDTOIphone(dto);
                         this.service.ActualizarIphone(dto);
                         MessageBox.Show("¡ IPhone actualizado con éxito !");
                     }
@@ -242,6 +238,7 @@ namespace ModalProductos
                     SamsungDTO dto = lsbS.SelectedItem as SamsungDTO;
                     if (dto != null)
                     {
+                        dto = AsignarDatosDTOSamsung(dto);
                         this.service.ActualizarSamsung(dto);
                         MessageBox.Show("¡ Samsung actualizado con éxito !");
                     }
@@ -253,12 +250,14 @@ namespace ModalProductos
                     {
                         if (dto is IphoneDTO)
                         {
-                            this.service.ActualizarIphone(dto as IphoneDTO);
+                            IphoneDTO i = AsignarDatosDTOIphone(dto as IphoneDTO);
+                            this.service.ActualizarIphone(i);
                             MessageBox.Show("¡ IPhone actualizado con éxito !");
                         }
                         else
                         {
-                            this.service.ActualizarSamsung(dto as SamsungDTO);
+                            SamsungDTO s = AsignarDatosDTOSamsung(dto as SamsungDTO);
+                            this.service.ActualizarSamsung(s);
                             MessageBox.Show("¡ Samsung actualizado con éxito !");
                         }
 
@@ -271,29 +270,18 @@ namespace ModalProductos
             }
             finally
             {
-                tbModeloS.Text = string.Empty;
-                tbPrecioS.Text = string.Empty;
-                tbSerie.Text = string.Empty;
-                tbStockS.Text = string.Empty;
+                Limpiar();
 
-                tbModeloI.Text = string.Empty;
-                tbPrecioI.Text = string.Empty;
-                tbBateria.Text = string.Empty;
-                tbStockI.Text = string.Empty;
-
-                btnListar.PerformClick();
-                btnListarS.PerformClick();
-                btnListarI.PerformClick();
+                ActualizarLista();
             }
         }
 
         private void lsbS_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Limpiamos
-            tbModeloI.Text = string.Empty;
-            tbPrecioI.Text = string.Empty;
-            tbBateria.Text = string.Empty;
-            tbStockI.Text = string.Empty;
+            Limpiar();
+            lsbI.ClearSelected();
+            btnListar.PerformClick();
 
 
             SamsungDTO dto = lsbS.SelectedItem as SamsungDTO;
@@ -309,10 +297,9 @@ namespace ModalProductos
         private void lsbI_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Limpiamos
-            tbModeloS.Text = string.Empty;
-            tbPrecioS.Text = string.Empty;
-            tbSerie.Text = string.Empty;
-            tbStockS.Text = string.Empty;
+            Limpiar();
+            lsbS.ClearSelected();
+            btnListar.PerformClick();
 
 
             IphoneDTO dto = lsbI.SelectedItem as IphoneDTO;
@@ -328,16 +315,9 @@ namespace ModalProductos
         private void lvwCelulares_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             //Limpiamos
-            tbModeloS.Text = string.Empty;
-            tbPrecioS.Text = string.Empty;
-            tbSerie.Text = string.Empty;
-            tbStockS.Text = string.Empty;
-
-            tbModeloI.Text = string.Empty;
-            tbPrecioI.Text = string.Empty;
-            tbBateria.Text = string.Empty;
-            tbStockI.Text = string.Empty;
-
+            Limpiar();
+            lsbI.ClearSelected();
+            lsbS.ClearSelected();
 
             try
             {
@@ -381,11 +361,53 @@ namespace ModalProductos
                 int id = Convert.ToInt32(tbId.Text);
                 this.service.EliminarCelular(id);
                 MessageBox.Show("¡ Celular eliminado con éxito !");
+
+                ActualizarLista();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"ERROR: {ex.Message}");
             }
+        }
+
+        private void ActualizarLista()
+        {
+            btnListar.PerformClick();
+            btnListarI.PerformClick();
+            btnListarS.PerformClick();
+        }
+
+        private void Limpiar()
+        {
+            tbModeloS.Text = string.Empty;
+            tbPrecioS.Text = string.Empty;
+            tbSerie.Text = string.Empty;
+            tbStockS.Text = string.Empty;
+
+            tbModeloI.Text = string.Empty;
+            tbPrecioI.Text = string.Empty;
+            tbBateria.Text = string.Empty;
+            tbStockI.Text = string.Empty;
+
+            rdbtnIphone.Checked = false;
+            rdbtnSamsung.Checked = false;
+        }
+
+        private IphoneDTO AsignarDatosDTOIphone(IphoneDTO iphone)
+        {
+                iphone.model = tbModeloI.Text;
+                iphone.precio = Convert.ToDouble(tbPrecioI.Text);
+                iphone.cond_bateria = tbBateria.Text;
+                iphone.stock = Convert.ToInt32(tbStockI.Text);
+                return iphone;
+        }
+        private SamsungDTO AsignarDatosDTOSamsung(SamsungDTO samsung)
+        {
+            samsung.model = tbModeloS.Text;
+            samsung.precio = Convert.ToDouble(tbPrecioS.Text);
+            samsung.serie = tbSerie.Text;
+            samsung.stock = Convert.ToInt32(tbStockS.Text);
+            return samsung;
         }
     }
 }

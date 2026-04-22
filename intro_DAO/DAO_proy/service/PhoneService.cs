@@ -139,18 +139,18 @@ namespace DAO_proy.service
 
         public void ActualizarSamsung(SamsungDTO dto)
         {
-            bool stock = false;
-            if (dto.stock != null)
-            {
-                stock = true;
-            }
             //Esta múltiple comprobación es, para cuando yo quiera actualizar una figura seleccionándola en un listbox, se autocompleten los campos necesarios (textbox, checkbox, etc).
             //Por lo tanto, no puede estar en null
             if (dto.stock == null || dto.precio == null || dto.model == null || dto.serie == null)
             {
                 throw new DatosIncorrectosException();
             }
-            this.celularDAO.UpdateSamsung(PhoneMapper.SamsungDTOToEntity(dto), stock);
+
+            bool stock = false;
+            if (dto.stock != null)
+            {
+            this.celularDAO.UpdateSamsung(PhoneMapper.SamsungDTOToEntity(dto), true);
+            }
         }
 
         #endregion
