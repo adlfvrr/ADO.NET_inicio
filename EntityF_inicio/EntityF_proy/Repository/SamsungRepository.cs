@@ -1,4 +1,5 @@
 ﻿using EntityF_proy.Data;
+using EntityF_proy.Exception;
 using EntityF_proy.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -40,9 +41,20 @@ namespace EntityF_proy.Repository
 
         public void Update(Samsung samsung, Phone phone)
         {
-            _context.Phones.Update(phone);
-            _context.Samsungs.Update(samsung);
+            Samsung s = _context.Samsungs.Find(samsung.IdPhone);
+            Phone p = _context.Phones.Find(phone.IdPhone);
+
+            if(s == null  || p == null)
+            {
+                throw new RecursoNoEncontradoException();
+            }
+            s.Model = samsung.Model;
+            s.Price = samsung.Price;
+            s.Serie = samsung.Serie;
+            p.Stock = phone.Stock;
+
             _context.SaveChanges();
+
         }
     }
 }

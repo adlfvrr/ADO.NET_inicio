@@ -46,7 +46,9 @@ namespace EntityF_proy.Service
                 throw new DatosIncorrectosException();
             }
 
-            repo.Update(PhoneMapper.SamsungDTOToEntity(dtoSamsung), new Phone { Stock = dtoSamsung.Stock ?? 0, IdType = 2 });
+            
+
+            repo.Update(PhoneMapper.SamsungDTOToEntity(dtoSamsung), new Phone { IdPhone = dtoSamsung.Id,Stock = dtoSamsung.Stock ?? 0, IdType = 2 });
         }
     }
 }
